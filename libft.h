@@ -6,7 +6,7 @@
 /*   By: angmedin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:11:06 by angmedin          #+#    #+#             */
-/*   Updated: 2023/03/20 17:38:05 by angmedin         ###   ########.fr       */
+/*   Updated: 2023/03/23 11:51:40 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strtrim(char const *s1, char const *set);
+char	**ft_split(char const *s, char c);
 #endif

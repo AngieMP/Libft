@@ -6,7 +6,7 @@
 /*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:11:54 by angmedin          #+#    #+#             */
-/*   Updated: 2023/03/20 17:44:23 by angmedin         ###   ########.fr       */
+/*   Updated: 2023/03/22 14:14:29 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,30 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
 	int		i;
 	int		j;
-	int		k;
+	int		len;
 
 	i = 0;
 	j = 0;
-	k = 0;
-	while (s1[i] != '\0' || s1[i] == set[j])
+	len = ft_strlen(s1);
+	while (s1[i] != '\0' && ft_strchr(set, s1[i]) != 0)
 	{
-		while (s1[i] == set[j])
-			j++;
 		i++;
 	}
-	/*while (s1[i] == set[i])
+	while (i < len && s1[len - j - 1] != '\0'
+		&& ft_strchr(set, s1[len - j - 1]) != 0)
 	{
-		i++;
 		j++;
-	}*/
-	str = (char *) malloc(j * sizeof(char));
-	i = i - j;
-	while (i < (i + j))
-	{
-		str[k] = s1[i];
-		i++;
-		k++;
 	}
-	return (str);
+	return (ft_substr(s1, (unsigned int)i, (size_t)(len - i - j)));
 }
 
-/*int	main(void)
+/*#include <stdio.h>
+int	main(void)
 {
-	s1 = lololalalolo;
-	set = lala;
-	printf("%s", ft_strstrim(
+	char	*s1 = "  \t \t \n   \n\n\n\t";
+	char	*set = " \n \t";
+	printf("%s",ft_strtrim(s1, set));
+	return(0);
 }*/

@@ -1,2 +1,2 @@
 # Libft
-In this project I created my own library of C functions
+In this project I code my own library of some C functions. The goal is to understand how each function works, and support my next projects in this library.

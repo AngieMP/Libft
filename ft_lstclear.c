@@ -6,18 +6,18 @@
 /*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:36:29 by angmedin          #+#    #+#             */
-/*   Updated: 2023/03/28 13:54:09 by angmedin         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:15:36 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
+	t_list	*aux;
+
 	while (*lst)
 	{
-		t_list	*aux;
-
 		aux = *lst;
 		(*lst) = aux -> next;
 		if (del)

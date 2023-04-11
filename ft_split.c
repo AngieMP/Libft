@@ -6,7 +6,7 @@
 /*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:30:29 by angmedin          #+#    #+#             */
-/*   Updated: 2023/03/23 14:33:34 by angmedin         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:51:06 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,20 @@ char	**ft_refill(char **matrix, const char *s, char c)
 	return (matrix);
 }
 
-char	**ft_alloc(char const *s, char c, char **matrix)
+static void	ft_free(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free (matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
+/*char	**ft_alloc(char const *s, char c, char **matrix)
 {
 	int	i;
 	int	j;
@@ -61,15 +74,53 @@ char	**ft_alloc(char const *s, char c, char **matrix)
 			}
 			matrix[k] = (char *) ft_calloc((j + 1), sizeof(char));
 			if (!matrix[k])
+			{
+				ft_free(matrix);
 				return (0);
+			}
 			k++;
 		}
 		else
 			i++;
 	}
 	return (ft_refill(matrix, s, c));
+}*/
+char	*ft_alloc_token(char const *s, char c, int i)
+{
+    int j = 0;
+
+    while (s[i] != c && s[i] != '\0') {
+        i++;
+        j++;
+    }
+    char *token = (char *)ft_calloc(j + 1, sizeof(char));
+    if (!token) {
+        return (0);
+    }
+    return (token);
 }
 
+char **ft_alloc(char const *s, char c, char **matrix)
+{
+    int i = 0;
+    int k = 0;
+    
+    while (s[i] != '\0') {
+        if (s[i] != c) {
+            char *token = ft_alloc_token(s, c, i);
+            if (!token) {
+                ft_free(matrix);
+                return (0);
+            }
+            matrix[k] = token;
+            k++;
+        } else {
+            i++;
+        }
+    }
+    
+    return ft_refill(matrix, s, c);
+}
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -99,8 +150,8 @@ char	**ft_split(char const *s, char c)
 
 int main()
 {
-    char    a[] = "^^^1^^2a,^^^^3^^^^--h^^^^";
-    char    b = '^';
+    char    a[] = "hello!";
+    char    b = ' ';
     char    **ptr;
     int     i;
     i = 0;

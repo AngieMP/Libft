@@ -6,7 +6,7 @@
 #    By: angmedin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 16:55:53 by angmedin          #+#    #+#              #
-#    Updated: 2023/03/28 12:53:05 by angmedin         ###   ########.fr        #
+#    Updated: 2023/04/10 13:08:46 by angmedin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = ft_isalpha.c ft_itoa.c ft_memmove.c ft_strlcpy.c	ft_strrchr.c\
 	   ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
 	   
 BONUSSRCS = ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstnew.c\
-			ft_lstdelone.c ft_lstclear.c
+			ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 OBJS = $(SRCS:.c=.o)
 BONUSOBJS = $(BONUSSRCS:.c=.o) 

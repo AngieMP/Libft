@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: angmedin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:26:06 by angmedin          #+#    #+#             */
-/*   Updated: 2023/04/13 12:06:24 by angmedin         ###   ########.fr       */
+/*   Created: 2023/03/24 17:05:49 by angmedin          #+#    #+#             */
+/*   Updated: 2023/03/27 15:17:17 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+int	ft_lstsize(t_list *lst)
 {
-	if (c >= 'a' && c <= 'z')
-		c = c - 32;
-	return (c);
-}
-/*#include <ctype.h>
-#include <stdio.h>
+	t_list	*aux;
+	int		i;
 
-int	main(void)
-{
-	printf("%d\n", ft_toupper(150));
-	printf("%d", toupper(150));
-}*/
+	aux = lst;
+	i = 0;
+	while (aux != NULL)
+	{
+		aux = aux -> next;
+		i++;
+	}
+	return (i);
+}

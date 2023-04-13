@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angmedin <angmedin@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 11:56:32 by angmedin          #+#    #+#             */
-/*   Updated: 2023/03/20 14:02:07 by angmedin         ###   ########.fr       */
+/*   Created: 2023/04/13 11:40:47 by angmedin          #+#    #+#             */
+/*   Updated: 2023/04/13 11:41:34 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

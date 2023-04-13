@@ -6,13 +6,13 @@
 /*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:15:56 by angmedin          #+#    #+#             */
-/*   Updated: 2023/04/10 13:34:29 by angmedin         ###   ########.fr       */
+/*   Updated: 2023/04/13 13:25:02 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_intlen(int nb)
+int	ft_intlen(long nb)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ int	ft_intlen(int nb)
 	return (i);
 }
 
-char	*ft_cutitoa(int n, char *str, int len)
+char	*ft_cutitoa(long n, char *str, int len)
 {
 	str[len] = '\0';
 	if (n < 0)
@@ -53,18 +53,14 @@ char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;
+	long	nbr;
 
-	if (n == -2147483648)
-	{
-		str = ft_itoa(-2147483647);
-		str[10] = '8';
-		return (str);
-	}
-	len = ft_intlen(n);
+	nbr = (long) n;
+	len = ft_intlen(nbr);
 	str = (char *) malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (0);
-	return (ft_cutitoa(n, str, len));
+	return (ft_cutitoa(nbr, str, len));
 }
 /*#include <stdio.h>
 int	main(void)

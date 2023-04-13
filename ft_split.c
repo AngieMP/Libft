@@ -6,126 +6,62 @@
 /*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:30:29 by angmedin          #+#    #+#             */
-/*   Updated: 2023/04/11 16:51:06 by angmedin         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:10:15 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_refill(char **matrix, const char *s, char c)
+static int	count_words(char const *s, char c)
 {
+	int	count;
 	int	i;
-	int	j;
-	int	k;
 
+	count = 0;
 	i = 0;
-	j = 0;
-	k = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
 		if (s[i] != c)
 		{
-			while (s[i] != c && s[i] != '\0')
-			{
-				matrix[j][k] = s[i];
+			count++;
+			while (s[i] && s[i] != c)
 				i++;
-				k++;
-			}
-			matrix[j][k] = '\0';
-			k = 0;
-			j++;
 		}
 		else
 			i++;
 	}
-	return (matrix);
+	return (count);
 }
 
-static void	ft_free(char **matrix)
+static void	free_split(char **array)
 {
 	int	i;
 
 	i = 0;
-	while (matrix[i])
+	while (array[i])
 	{
-		free (matrix[i]);
+		free(array[i]);
 		i++;
 	}
-	free(matrix);
+	free(array);
 }
 
-/*char	**ft_alloc(char const *s, char c, char **matrix)
+static char	*get_word(char const *s, char c)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	word = ft_substr(s, 0, i);
+	return (word);
+}
+
+static int	fill_array(char const *s, char c, char **array)
 {
 	int	i;
 	int	j;
-	int	k;
-
-	i = 0;
-	k = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] != c)
-		{
-			j = 0;
-			while (s[i] != c && s[i] != '\0')
-			{
-				i++;
-				j++;
-			}
-			matrix[k] = (char *) ft_calloc((j + 1), sizeof(char));
-			if (!matrix[k])
-			{
-				ft_free(matrix);
-				return (0);
-			}
-			k++;
-		}
-		else
-			i++;
-	}
-	return (ft_refill(matrix, s, c));
-}*/
-char	*ft_alloc_token(char const *s, char c, int i)
-{
-    int j = 0;
-
-    while (s[i] != c && s[i] != '\0') {
-        i++;
-        j++;
-    }
-    char *token = (char *)ft_calloc(j + 1, sizeof(char));
-    if (!token) {
-        return (0);
-    }
-    return (token);
-}
-
-char **ft_alloc(char const *s, char c, char **matrix)
-{
-    int i = 0;
-    int k = 0;
-    
-    while (s[i] != '\0') {
-        if (s[i] != c) {
-            char *token = ft_alloc_token(s, c, i);
-            if (!token) {
-                ft_free(matrix);
-                return (0);
-            }
-            matrix[k] = token;
-            k++;
-        } else {
-            i++;
-        }
-    }
-    
-    return ft_refill(matrix, s, c);
-}
-char	**ft_split(char const *s, char c)
-{
-	int		i;
-	int		j;
-	char	**matrix;
 
 	i = 0;
 	j = 0;
@@ -133,34 +69,31 @@ char	**ft_split(char const *s, char c)
 	{
 		if (s[i] != c)
 		{
+			array[j] = get_word(s + i, c);
+			if (!array[j])
+				return (0);
 			j++;
-			while (s[i] != c && s[i])
+			while (s[i] && s[i] != c)
 				i++;
 		}
 		else
 			i++;
 	}
-	matrix = (char **) ft_calloc((j + 1), sizeof(char *));
-	if (!matrix)
-		return (0);
-	return (ft_alloc(s, c, matrix));
+	array[j] = NULL;
+	return (1);
 }
 
-/*#include <stdio.h>
-
-int main()
+char	**ft_split(char const *s, char c)
 {
-    char    a[] = "hello!";
-    char    b = ' ';
-    char    **ptr;
-    int     i;
-    i = 0;
-    ptr = ft_split(a, b);
-    while (ptr[i])
-    {
-        printf("%s\n", ptr[i]);
-        i++;
-    }
-    free(ptr);
-    return (0);
-}*/
+	char	**array;
+
+	array = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!array)
+		return (NULL);
+	if (!fill_array(s, c, array))
+	{
+		free_split(array);
+		return (NULL);
+	}
+	return (array);
+}

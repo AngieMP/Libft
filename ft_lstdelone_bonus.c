@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angmedin <angmedin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:26:06 by angmedin          #+#    #+#             */
-/*   Updated: 2023/04/13 12:06:24 by angmedin         ###   ########.fr       */
+/*   Created: 2023/03/27 19:18:28 by angmedin          #+#    #+#             */
+/*   Updated: 2023/03/28 12:33:21 by angmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (c >= 'a' && c <= 'z')
-		c = c - 32;
-	return (c);
+	if (lst)
+	{
+		if (del)
+			del(lst -> content);
+		free(lst);
+	}
 }
-/*#include <ctype.h>
-#include <stdio.h>
-
-int	main(void)
-{
-	printf("%d\n", ft_toupper(150));
-	printf("%d", toupper(150));
-}*/

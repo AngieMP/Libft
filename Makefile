@@ -6,7 +6,7 @@
 #    By: angmedin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 16:55:53 by angmedin          #+#    #+#              #
-#    Updated: 2023/04/10 13:08:46 by angmedin         ###   ########.fr        #
+#    Updated: 2023/04/13 14:37:47 by angmedin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ SRCS = ft_isalpha.c ft_itoa.c ft_memmove.c ft_strlcpy.c	ft_strrchr.c\
 	   ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_strmapi.c\
 	   ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
 	   
-BONUSSRCS = ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstnew.c\
-			ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+BONUSSRCS = ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstnew_bonus.c\
+			ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 BONUSOBJS = $(BONUSSRCS:.c=.o) 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror #-I.
 RM = rm -f
 NAME = libft.a
 
